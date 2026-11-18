@@ -1,0 +1,117 @@
+{
+  "RoleDetailList": [
+    {
+      "RoleName": "payments-api-role",
+      "Arn": "arn:aws:iam::111122223333:role/payments-api-role",
+      "InstanceProfileList": [
+        { "InstanceProfileName": "payments-api", "Arn": "arn:aws:iam::111122223333:instance-profile/payments-api" }
+      ],
+      "RolePolicyList": [
+        {
+          "PolicyName": "payments-data",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::acme-customer-exports/*"
+              },
+              {
+                "Effect": "Allow",
+                "Action": "secretsmanager:GetSecretValue",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "AttachedManagedPolicies": []
+    },
+    {
+      "RoleName": "ops-bastion-role",
+      "Arn": "arn:aws:iam::111122223333:role/ops-bastion-role",
+      "InstanceProfileList": [
+        { "InstanceProfileName": "ops-bastion", "Arn": "arn:aws:iam::111122223333:instance-profile/ops-bastion" }
+      ],
+      "RolePolicyList": [],
+      "AttachedManagedPolicies": [
+        { "PolicyName": "ops-read-config", "PolicyArn": "arn:aws:iam::111122223333:policy/ops-read-config" }
+      ]
+    },
+    {
+      "RoleName": "docs-site-role",
+      "Arn": "arn:aws:iam::111122223333:role/docs-site-role",
+      "InstanceProfileList": [
+        { "InstanceProfileName": "docs-site", "Arn": "arn:aws:iam::111122223333:instance-profile/docs-site" }
+      ],
+      "RolePolicyList": [
+        {
+          "PolicyName": "write-logs",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [ "logs:CreateLogStream", "logs:PutLogEvents" ],
+                "Resource": "arn:aws:logs:eu-west-1:111122223333:log-group:/docs-site:*"
+              }
+            ]
+          }
+        }
+      ],
+      "AttachedManagedPolicies": []
+    },
+    {
+      "RoleName": "legacy-admin-role",
+      "Arn": "arn:aws:iam::111122223333:role/legacy-admin-role",
+      "InstanceProfileList": [
+        { "InstanceProfileName": "legacy-admin", "Arn": "arn:aws:iam::111122223333:instance-profile/legacy-admin" }
+      ],
+      "RolePolicyList": [],
+      "AttachedManagedPolicies": [
+        { "PolicyName": "AdministratorAccess", "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess" }
+      ]
+    }
+  ],
+  "Policies": [
+    {
+      "PolicyName": "ops-read-config",
+      "Arn": "arn:aws:iam::111122223333:policy/ops-read-config",
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [ "ssm:GetParameter*", "ec2:Describe*" ],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "PolicyName": "AdministratorAccess",
+      "Arn": "arn:aws:iam::aws:policy/AdministratorAccess",
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              { "Effect": "Allow", "Action": "*", "Resource": "*" }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

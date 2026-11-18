@@ -1,0 +1,27 @@
+{
+  "RouteTables": [
+    {
+      "RouteTableId": "rtb-0f1111111111111aa",
+      "VpcId": "vpc-0aaa0000000000001",
+      "Associations": [
+        { "Main": false, "SubnetId": "subnet-0a11111111111111a" },
+        { "Main": false, "SubnetId": "subnet-0b22222222222222b" }
+      ],
+      "Routes": [
+        { "DestinationCidrBlock": "10.0.0.0/16", "GatewayId": "local" },
+        { "DestinationCidrBlock": "0.0.0.0/0", "GatewayId": "igw-0d44444444444444d" }
+      ]
+    },
+    {
+      "RouteTableId": "rtb-0f2222222222222bb",
+      "VpcId": "vpc-0aaa0000000000001",
+      "Associations": [
+        { "Main": true }
+      ],
+      "Routes": [
+        { "DestinationCidrBlock": "10.0.0.0/16", "GatewayId": "local" },
+        { "DestinationCidrBlock": "0.0.0.0/0", "NatGatewayId": "nat-0e55555555555555e" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "Error": {
+    "Code": "UnauthorizedOperation",
+    "Message": "You are not authorized to perform this operation. User: arn:aws:sts::111122223333:assumed-role/scanner-readonly/scan is not authorized to perform: ec2:DescribeRouteTables"
+  }
+}
